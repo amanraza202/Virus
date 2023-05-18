@@ -18,10 +18,10 @@ public class virus{
     }
     public void image(){
         JWindow window = new JWindow();
+        String images[] = {"one.jpg","two.avif","three.jpg","VIRUS.jpg"};
         int n = (int)(Math.random()*3);
-        String images[] = {}
         String image = images[n]; 
-        // ImageIcon iconLogo = new ImageIcon("VIRUS.jpg");
+        ImageIcon iconLogo = new ImageIcon(image);
         JLabel l = new JLabel(iconLogo,JLabel.CENTER);
         window.add(l);
         window.setSize(300,200);
